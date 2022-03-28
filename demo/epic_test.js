@@ -1,4 +1,6 @@
-const puppeteer = require('puppeteer');
+const puppeteer = require('puppeteer-extra');
+const StealthPlugin = require('puppeteer-extra-plugin-stealth')
+puppeteer.use(StealthPlugin()) //解决验证码问题
 const UserAgent = require("user-agents");
 const path = require('path')
 const userDataDir = path.join(__dirname,"./userData")
@@ -19,10 +21,10 @@ const userAgent = new UserAgent({
             height: 960
         },
         timeout:30 * 1000,
-        args:[
-            `--user-agent=${userAgent}`,
-        ],
-        userDataDir: userDataDir,//浏览器配置数据
+        // args:[
+        //     `--user-agent=${userAgent}`,
+        // ],
+        // userDataDir: userDataDir,//浏览器配置数据
     })
 
     // 自定义键盘输入
@@ -91,8 +93,9 @@ const userAgent = new UserAgent({
 
 
     // 截图
+    const screenshot = path.join(__dirname,"../documents")
     await page.screenshot({
-        path: './screenshot/capture.png',  //图片保存路径
+        path: screenshot + '/capture.png',  //图片保存路径
         type: 'png',
         fullPage: true, //边滚动边截图
         // clip: {x: 0, y: 0, width: 1920, height: 800}

@@ -27,7 +27,7 @@ const userAgent = new UserAgent({
         // ],
         // userDataDir: userDataDir,//浏览器配置数据
     })
-
+    // console.log(browser.wsEndpoint())
     // 自定义键盘输入
     Object.prototype.customKeyboard = async function(str, {delay} = {delay: 20}, randomDelay = 20){
         const upStrs = ['~','!','@','#','$','%','^','&','*','(',')','_','+','{','}','|',':','"','<','>','?','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
@@ -95,6 +95,22 @@ const userAgent = new UserAgent({
         loginBtn.click() //登录
     ])
 
+    // 菜单
+    await page.addScriptTag({path :"../menu/js/jquery-3.2.1.min.js"})
+    await page.addScriptTag({path :"../menu/js/common.js"})
+    await page.addScriptTag({path :"../menu/js/menu.js"})
+    const filePath = "../menu/images/bg_hor.png"
+    await page.evaluate(async filePath => {
+        // document.open();
+        // document.write(filePath);
+        // document.close();
+    }) 
+    await page.addStyleTag({path :"../menu/css/main.css"})
+    await page.addStyleTag({path :"../menu/css/menu.css"})
+    await page.evaluate(() => {
+        console.log(`jquery:${window.$ !== undefined}`)
+    })
+
     // 上传任务界面
     await page.goto(`${targetUrl}/#/upload`);
     // 填写信息
@@ -114,7 +130,7 @@ const userAgent = new UserAgent({
 
     // 姓名 证件号
     const inputSelector = ".el-form-item .el-form-item__content>.el-input>.el-input__inner"
-    const inputValues = await page.$$eval(inputSelector, nodes => nodes.map(el => el.value="")) //清空值
+    await page.$$eval(inputSelector, nodes => nodes.map(el => el.value="")) //清空值
     // console.log(inputValues)
     const inputs = await page.$$(inputSelector)
     await inputs[0].focus()

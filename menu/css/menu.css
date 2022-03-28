@@ -1,0 +1,38 @@
+/* quick_links */
+.quick_links_wrap{ font-size:0;width:66px; position:fixed;right:100px;bottom:100px; z-index:9; -webkit-transition:width linear .4s; -moz-transition:width linear .4s; -ms-transition:width linear .4s; transition:width linear .4s; }
+.quick_links_wrap.quick_links_min{ width:34px;}
+.quick_links_wrap.quick_links_dockright{ margin-left:0; left:auto; right:4px;}
+.quick_links_panel{ background:#FBFBFB; border:1px solid #EAEAEA; box-shadow:0 0 4px rgba(0,0,0,.14); padding-bottom:30px; height:160px; width:64px; overflow:hidden; position:absolute; left:0; bottom:0; -webkit-transition:all ease .4s; -moz-transition:all ease .4s; -ms-transition:all ease .4s; transition:all ease .4s;}
+.quick_links_min .quick_links_panel{ height:0; width:32px;}
+.quick_links_allow_gotop{ height:385px;}
+.quick_links_min .quick_links_allow_gotop{ height:32px;}
+.quick_links_panel .quick_toggle{ background:#FBFBFB; height:30px; width:100%; position:absolute; left:0; bottom:0;}
+.quick_links_panel .toggle{ background:url(../images/bg_hor.png) no-repeat -160px -62px; margin:-10px 0 0 -10px; height:20px; width:20px; position:absolute; left:50%; top:50%; -webkit-transition:all linear .4s; -moz-transition:all linear .4s; -ms-transition:all linear .4s; transition:all linear .4s;}
+:root .quick_links_panel .toggle{ background-position:-160px -82px; -webkit-transform:rotate(-45deg); -moz-transform:rotate(-45deg); -ms-transform:rotate(-45deg); transform:rotate(-45deg);}
+.quick_links_min .quick_links_panel .toggle{ background-position:-160px -82px;}
+:root .quick_links_min .quick_links_panel .toggle{ background-position:-160px -82px; -webkit-transform:rotate(-360deg); -moz-transform:rotate(-360deg); -ms-transform:rotate(-360deg); transform:rotate(-360deg);}
+.quick_links{ width:100%; position:absolute; left:0; top:-77px; -webkit-transition:top ease .4s; -moz-transition:top ease .4s; -ms-transition:top ease .4s; transition:top ease .4s;}
+.quick_links_allow_gotop .quick_links, .quick_links_min .quick_links_allow_gotop .quick_links{ top:0;}
+.quick_links_min .quick_links{ top:32px;}
+.quick_links a{ display:block; border:1px solid #fff; border-bottom-color:#edecec; color:#4467a7; font-size:12px; margin:0; padding:8px 0; text-align:center;}
+.quick_links a:hover, .quick_links a.current{ background-color:#4467a7; border-color:#4467a7; color:#fff;}
+.quick_links i{ display:inline-block; background:url(../images/bg_hor.png) no-repeat 0 -182px; cursor:pointer; height:38px; width:38px; vertical-align:top;}
+.quick_links a:hover i, .quick_links a.current i{ background-position:0 -220px;}
+.quick_links .message{ background-position:-190px -182px;}
+.quick_links a:hover .message, .quick_links a.current .message{ background-position:-190px -220px;}
+
+.quick_links .view{ background-position:-76px -182px;}
+.quick_links a:hover .view, .quick_links a.current .view{ background-position:-76px -220px;}
+.quick_links .qa{ background-position:-114px -182px;}
+.quick_links a:hover .qa, .quick_links a.current .qa{ background-position:-114px -220px;}
+.quick_links .top{ background-position:-152px -182px;}
+.quick_links_min .quick_links .top{ background-position:-180px -62px; height:20px; width:20px;}
+.quick_links a:hover .top, .quick_links a.current .top{ background-position:-152px -220px;}
+.quick_links_min .quick_links a:hover .top, .quick_links_min .quick_links a.current .top{ background-position:-180px -82px;}
+.quick_links span{ display:block; cursor:pointer; padding-top:3px; height:1.5em; width:100%; overflow:hidden; word-break:break-all; word-wrap:break-word; text-overflow:ellipsis;}
+.quick_links .num, .quick_links .num b,
+.quick_links_pop .num, .quick_links_pop .num b{ display:inline-block; background:url(../images/bg_hor.png) no-repeat 100% -102px; padding-right:6px; vertical-align:top;}
+.quick_links .num, .quick_links_pop .num{ background-position:-210px -82px; color:#fff; cursor:pointer; font:12px/18px Arial; margin-left:6px; padding:0 0 0 6px; vertical-align:middle;}
+.quick_links .num{ margin:-40px 0 0; position:absolute; left:38px;}
+.quick_links a:hover .num, .quick_links a.current .num{ background-position:-220px -82px;}
+.quick_links a:hover .num b, .quick_links a.current .num b{ background-position:100% -122px;}
