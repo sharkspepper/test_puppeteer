@@ -1,0 +1,28 @@
+@charset "utf-8";
+body, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, button, textarea, p, blockquote, th, td{ margin:0; padding:0;}
+h1, h2, h3, h4, h5, h6{ font-size:100%;}
+body{ background:#f9f9f9; font:12px/1.5 "\5FAE\8F6F\96C5\9ED1",Arial,HELVETICA; min-width:1200px; _background-image:url(about:blank); _background-attachment:fixed;}
+img{ border:0;}
+ol, ul{ list-style:none;}
+:link, :visited, ins{ text-decoration:none;}
+table{ border-collapse:collapse; border-spacing:0;}
+sub, sup{ font-size:100%; vertical-align:baseline;}
+blockquote, q{ quotes:"\201C" "\201D" "\2018" "\2019";}
+blockquote:before, blockquote:after, q:before, q:after{ content:""; content:none;}
+input, button, textarea, select, optgroup, option{ font-family:inherit; font-size:inherit; font-style:inherit; font-weight:inherit;}
+button, input, select, textarea{ font-family:inherit; font-size:100%; margin:0;}
+button::-moz-focus-inner, input::-moz-focus-inner{ border:0; padding:0;}
+textarea{ overflow:auto; resize:vertical; vertical-align:top;}
+i, cite, em, address{ font-style:normal;}
+a{ color:#333; text-decoration:none;}
+a:hover{ color:#09F; text-decoration:none;}
+a.disabled, a.disabled:hover{ cursor:default; pointer-events:none;}
+.clearfix:before, .clearfix:after{ display:block; content:"\200b"; height:0;}
+.clearfix:after{ clear:both;}
+.clearfix{ *zoom:1;}
+.hide, .tmpl{ display:none;}
+.wrap{ margin:0 auto; width:1186px;}
+/* old compatible, deprecated! */
+.fl{ float:left;} .fr {float:right;} .clear {clear:both;}
+.bold{font-weight:bold;} .f11{ font-size:11px;} .f14{ font-size:14px;}
+.tl {text-align:left;}.tc {text-align:center;} .tr, .a-right{text-align:right;} .nowrap,.nobr{white-space:nowrap; word-wrap:normal;}
