@@ -1,8 +1,9 @@
 const puppeteer = require('puppeteer');
 const tesseract = require('tesseract.js');
 const UserAgent = require("user-agents");
+const { customKeyboard, addMenu } = require("../utils/utils");
 const path = require('path')
-const userDataDir = path.join(__dirname,"../userData")
+const userDataDir = path.join(__dirname,"./userData")
 const targetUrl = "http://192.168.1.18:8080"
 const account = "王瑞";
 const password = "hc654321";
@@ -17,34 +18,14 @@ const userAgent = new UserAgent({
     const browser = await puppeteer.launch({
         headless: false,   //有浏览器界面启动
         slowMo: 100,       //放慢浏览器执行速度，方便测试观察
-        defaultViewport:{
-            width: 1280,
-            height: 960
-        },
+        defaultViewport:null,
         timeout:30 * 1000,
         // args:[
         //     `--user-agent=${userAgent}`,
         // ],
-        // userDataDir: userDataDir,//浏览器配置数据
+        userDataDir: userDataDir,//浏览器配置数据
     })
     // console.log(browser.wsEndpoint())
-    // 自定义键盘输入
-    Object.prototype.customKeyboard = async function(str, {delay} = {delay: 20}, randomDelay = 20){
-        const upStrs = ['~','!','@','#','$','%','^','&','*','(',')','_','+','{','}','|',':','"','<','>','?','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
-        const downStrs = ['`','1','2','3','4','5','6','7','8','9','0','-','=','[',']','\\',';','\'',',','.','/','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
-        for(let i=0;i<str.length;i++){
-            let rm = Math.floor(Math.random()*randomDelay)
-            if(upStrs.includes(str[i])){
-                await page.keyboard.down('Shift');
-                await page.keyboard.press(str[i], {delay: delay + rm})
-                await page.keyboard.up('Shift');
-            }else if(downStrs.includes(str[i])){
-                await page.keyboard.press(str[i], {delay: delay + rm})
-            }else{
-                await page.keyboard.type(str[i], {delay: delay + rm})
-            }
-        }
-    }
 
     const page = await browser.newPage();
     await page.goto(targetUrl,{
@@ -61,12 +42,12 @@ const userAgent = new UserAgent({
     // 填充用户名
     const nameInput = await page.$('.firstline input[type=text]');
     await nameInput.focus(); 
-    await page.customKeyboard(account);
+    await customKeyboard(page, account);
 
     // 填充密码
     const pwdInput = await page.$('.secondline input[type=password]');
     await pwdInput.focus();
-    await page.customKeyboard(password);
+    await customKeyboard(page, password);
 
     //  捕获验证码
     const vcode = await page.$('.secondline svg');
@@ -86,7 +67,7 @@ const userAgent = new UserAgent({
     // 填充验证码
     const vcodeInput = await page.$('.secondline input[type=text]');
     await vcodeInput.focus();
-    await page.customKeyboard("wrwe");
+    await customKeyboard(page, "wrwe");
 
     // 登录按钮
     const loginBtn = await page.$('.lastline button');
@@ -96,21 +77,11 @@ const userAgent = new UserAgent({
     ])
 
     // 菜单
-    await page.addScriptTag({path :"../menu/js/jquery-3.2.1.min.js"})
-    await page.addScriptTag({path :"../menu/js/common.js"})
-    await page.addScriptTag({path :"../menu/js/menu.js"})
-    const filePath = "../menu/images/bg_hor.png"
-    await page.evaluate(async filePath => {
-        // document.open();
-        // document.write(filePath);
-        // document.close();
-    }) 
-    await page.addStyleTag({path :"../menu/css/main.css"})
-    await page.addStyleTag({path :"../menu/css/menu.css"})
-    await page.evaluate(() => {
-        console.log(`jquery:${window.$ !== undefined}`)
+    await addMenu(page)
+    await page.on('load',async ()=>{
+        // 防止页面刷新,菜单消失
+        await addMenu(page)
     })
-
     // 上传任务界面
     await page.goto(`${targetUrl}/#/upload`);
     // 填写信息
@@ -134,9 +105,9 @@ const userAgent = new UserAgent({
     // console.log(inputValues)
     const inputs = await page.$$(inputSelector)
     await inputs[0].focus()
-    await inputs[0].customKeyboard("张老四")
+    await customKeyboard(page,"张老四")
     await inputs[1].focus()
-    await inputs[1].customKeyboard("123456789012345678")
+    await customKeyboard(page, "123456789012345678")
     
     // await page.waitForSelector('.el-col.el-col-12')
 
